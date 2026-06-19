@@ -17,7 +17,7 @@ Voici la liste des 22 concepts, fonctionnalités et composants clés de Symfony 
 - [x] 1. Le moteur de template (Twig)
 - [x] 2. L'ORM Doctrine (Entités, migrations, requêtes de base)
 - [x] 3. Les Formulaires (Form Types, gestion des requêtes)
-- [ ] 4. Validation des données (Constraints de validation)
+- [x] 4. Validation des données (Constraints de validation)
 - [ ] 5. Comprendre et manipuler les Services (Injection de dépendances)
 - [ ] 6. ORM : Relations entre entités (ManyToOne)
 - [ ] 7. Envoi et gestion de fichiers (Upload d'images de recettes)
