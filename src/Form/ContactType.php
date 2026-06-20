@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\SubmitButton;
@@ -36,6 +37,13 @@ class ContactType extends AbstractType
                     new NotBlank()
                 ])
             ])
+            ->add('service', ChoiceType::class, [
+                'choices'  => [
+                    'Informatique' => "informatique",
+                    'Secretariat' => "secretariat",
+                    'Recrutement' => "recrutement",
+                ]
+            ],)
             ->add('submit', SubmitType::class, [
                 'label' => "Envoyer votre message",
             ])

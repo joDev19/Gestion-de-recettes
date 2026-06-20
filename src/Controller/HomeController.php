@@ -28,12 +28,9 @@ final class HomeController extends AbstractController
         $form = $this->createForm(ContactType::class, $contactDTO);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // dd($contactDTO);
+            //dd($contactDTO);
             $this->sendMail(
-                email: $contactDTO->email,
-                subject: "Nouvel email de $contactDTO->nom",
-                message: $contactDTO->message,
-                nom: $contactDTO->nom
+               $contactDTO
             );
             $this->addFlash("success", "Email envoyé avec succes");
             return $this->redirectToRoute('home');
@@ -41,19 +38,16 @@ final class HomeController extends AbstractController
         return $this->render('home/contact.html.twig', ['form' => $form]);
     }
     public function sendMail(
-        string $subject,
-        string $email,
-        string $message,
-        string $nom
+        ContactDTO $data,
     ) {
         $email = new TemplatedEmail()
-            ->from("tpjordy@gmail.com")
-            ->to(new Address($email))
-            ->subject($subject)
+            ->from($data->email)
+            ->to(new Address($data->service.'@entreprise.com'))
+            ->subject("Nouvel email de contact depuis votre site")
             ->htmlTemplate('email/contact_email_template.html.twig',)
             ->context([
-                'nom' => $nom,
-                'message' => $message,
+                'nom' => $data->nom,
+                'message' => $data->message,
             ]);
         try {
             $this->mailer->send($email);
