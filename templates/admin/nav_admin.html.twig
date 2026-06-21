@@ -1,20 +1,17 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="{{ url('home') }}">Mon site</a>
+				<a class="navbar-brand" href="{{ url('admin.recipe.index') }}">Administration</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link {{ app.current_route=='home' ? 'active' : '' }}" aria-current="page" href="{{ url('home') }}">Accueil</a>
-						</li>
 						{# <li class="nav-item">
-							<a class="nav-link {{ app.current_route starts with 'recipe.' ? 'active' : '' }}" href="{{url('recipe.index')}}">Recettes</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link {{ app.current_route == 'contact' ? 'active' : '' }}" href="{{url('contact')}}">Contact</a>
+							<a class="nav-link {{ app.current_route=='home' ? 'active' : '' }}" aria-current="page" href="{{ url('home') }}">Accueil</a>
 						</li> #}
+						<li class="nav-item">
+							<a class="nav-link {{ app.current_route starts with 'admin.recipe.' ? 'active' : '' }}" href="{{url('admin.recipe.index')}}">Recettes</a>
+						</li>
 					</ul>
 				</div>
 			</div>

@@ -4,13 +4,12 @@ namespace App\Form;
 
 use App\Entity\Recipe;
 use DateTimeImmutable;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,7 +26,7 @@ class RecipeType extends AbstractType
             ->add('title', TextType::class, [
                 'empty_data' => ''
             ])
-            ->add('slug', TypeTextType::class, [
+            ->add('slug', TextType::class, [
                 'required' => false,
                 // 'constraints' => new Sequentially([
                 //     new Length(min: 10),
