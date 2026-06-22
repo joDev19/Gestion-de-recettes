@@ -7,11 +7,14 @@ use App\Validator\BanWord;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Attribute as Vich;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 #[UniqueEntity('title')]
 #[UniqueEntity('slug')]
+#[Vich\Uploadable]
 class Recipe
 {
     #[ORM\Id]
@@ -44,9 +47,23 @@ class Recipe
     #[Assert\LessThanOrEqual(80)]
     private ?int $duration = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mthumbnail = null;
+    #[Vich\UploadableField(mapping: 'recipes', fileNameProperty:'mthumbnail')]
+    #[Assert\Image()]
+    private ?File $thumbnailFile = null;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getThumbnailFile(): ?File{
+        return $this->thumbnailFile;
+    }
+    public function setThumbnailFile(?File $thumbnailFile): static{
+        $this->thumbnailFile = $thumbnailFile;
+        return $this;
     }
 
     public function getTitle(): ?string
@@ -117,6 +134,18 @@ class Recipe
     public function setDuration(?int $duration): static
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getMthumbnail(): ?string
+    {
+        return $this->mthumbnail;
+    }
+
+    public function setMthumbnail(?string $mthumbnail): static
+    {
+        $this->mthumbnail = $mthumbnail;
 
         return $this;
     }
