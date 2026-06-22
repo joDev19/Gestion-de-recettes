@@ -5,8 +5,10 @@
 
 
 {% block body %}
-    <h2>{{ recipe.id }} - {{ recipe.title }}</h2>
-   
-   {{ form(form) }}
-    
-{% endblock %}
+	<h2>{{ recipe.id }}
+		-
+		{{ recipe.title }}</h2>
+	<p>
+		<img src="{{ vich_uploader_asset(recipe, 'thumbnailFile') }}" alt="">
+	</p>
+	{{ form(form) }}{% endblock %}
