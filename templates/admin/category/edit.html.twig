@@ -1,0 +1,12 @@
+{% extends 'admin/admin.html.twig' %}
+
+
+{% block title "Recette : " ~ category.slug %}
+
+
+{% block body %}
+    <h2>{{ category.id }} - {{ category.title }}</h2>
+   
+   {{ form(form) }}
+    
+{% endblock %}
