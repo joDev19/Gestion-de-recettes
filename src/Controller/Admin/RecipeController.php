@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Recipe;
 use App\Form\RecipeType;
+use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,9 +20,14 @@ use Symfony\Component\Validator\Constraints\Date;
 final class RecipeController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(Request $request, RecipeRepository $repository): Response
+    public function index(Request $request, RecipeRepository $repository, CategoryRepository $categoryRepository, EntityManagerInterface $em): Response
     {
-        $recipes = $repository->findWithDurationLowerThan(25);
+        // $platPrincipal = $categoryRepository->findOneBy(['slug'=>'plat-de-resistance']);
+        // $pate = $repository->findOneBy(['slug'=>'pates-bolognaises']);
+        // $pate->setCategory($platPrincipal);
+        // $em->flush();
+        //dd($platPrincipal);
+        $recipes = $repository->findWithDurationLowerThan(25);  
         // dd($repository->findTotalDuration()); 
         return $this->render('admin/recipe/index.html.twig', [
             "recipes" => $recipes

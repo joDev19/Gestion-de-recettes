@@ -52,6 +52,8 @@ class Recipe
     #[Vich\UploadableField(mapping: 'recipes', fileNameProperty:'mthumbnail')]
     #[Assert\Image()]
     private ?File $thumbnailFile = null;
+    #[ORM\ManyToOne(inversedBy: 'recipes', cascade:['persist'])]
+    private ?Category $category = null;
 
     public function getId(): ?int
     {
@@ -146,6 +148,14 @@ class Recipe
     public function setMthumbnail(?string $mthumbnail): static
     {
         $this->mthumbnail = $mthumbnail;
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

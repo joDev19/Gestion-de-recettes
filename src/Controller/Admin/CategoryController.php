@@ -45,6 +45,7 @@ final class CategoryController extends AbstractController
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            //dd($category);
             $em->flush();
             $this->addFlash('success', 'Catégorie modifié avec succes');
             return $this->redirectToRoute('admin.categories.index');
