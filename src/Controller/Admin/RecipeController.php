@@ -14,14 +14,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Constraints\Date;
 
 #[Route('/admin/recettes', name: 'admin.recipe.')]
 final class RecipeController extends AbstractController
 {
     #[Route('/', name: 'index')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request, RecipeRepository $repository, CategoryRepository $categoryRepository, EntityManagerInterface $em): Response
     {
+        // $this->denyAccessUnlessGranted('ROLE_USER');
         // $platPrincipal = $categoryRepository->findOneBy(['slug'=>'plat-de-resistance']);
         // $pate = $repository->findOneBy(['slug'=>'pates-bolognaises']);
         // $pate->setCategory($platPrincipal);
