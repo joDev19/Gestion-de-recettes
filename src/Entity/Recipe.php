@@ -148,6 +148,8 @@ class Recipe
     public function setMthumbnail(?string $mthumbnail): static
     {
         $this->mthumbnail = $mthumbnail;
+        return $this;
+    }
     public function getCategory(): ?Category
     {
         return $this->category;
