@@ -22,7 +22,7 @@ final class RecipeController extends AbstractController
 {
     #[Route('/', name: 'index')]
     #[IsGranted('ROLE_ADMIN')]
-    public function index(Request $request, RecipeRepository $repository, CategoryRepository $categoryRepository, EntityManagerInterface $em): Response
+    public function index(Request $request, RecipeRepository $repository): Response
     {
         // $this->denyAccessUnlessGranted('ROLE_USER');
         // $platPrincipal = $categoryRepository->findOneBy(['slug'=>'plat-de-resistance']);
@@ -30,10 +30,17 @@ final class RecipeController extends AbstractController
         // $pate->setCategory($platPrincipal);
         // $em->flush();
         //dd($platPrincipal);
-        $recipes = $repository->findWithDurationLowerThan(25);  
+        //$recipes = $repository->findWithDurationLowerThan(25);  
+        $page =  $request->query->getInt('page', 1);
+        $limit = 2;
+        $recipes = $repository->paginateRecipes($page, $limit);
+        $maxPage = ceil($recipes->count() / $limit);
+        // dd($recipes->count());
         // dd($repository->findTotalDuration()); 
         return $this->render('admin/recipe/index.html.twig', [
-            "recipes" => $recipes
+            "recipes" => $recipes,
+            "maxPage" => $maxPage,
+            'page' => $page
         ]);
     }
     #[Route('/{slug}-{id}', name: 'show', requirements: ['id' => '\d+', 'slug' => '[a-z0-9-]+'])]
