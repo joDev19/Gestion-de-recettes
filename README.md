@@ -22,7 +22,7 @@ Voici la liste des 22 concepts, fonctionnalités et composants clés de Symfony 
 - [x] 6. ORM : Relations entre entités (ManyToOne)
 - [x] 7. Envoi et gestion de fichiers (Upload d'images de recettes)
 - [x] 8. Le composant Sécurité (Authentification, pare-feu, contrôle d'accès)
-- [ ] 9. Pagination des données (Affichage fluide des listes de recettes)
+- [x] 9. Pagination des données (Affichage fluide des listes de recettes)
 - [ ] 10. Doctrine avancé (Select partiel, DQL et optimisation des requêtes)
 - [ ] 11. AssetMapper (Gestion des assets modernes sans Node.js)
 - [ ] 12. Créer une API : Le Serializer (Transformation des données en JSON)
